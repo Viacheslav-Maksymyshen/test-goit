@@ -13,7 +13,7 @@ import usersData from '../../data/users.json';
 
 const TweetCard = ({ userId = 1 }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const [userData, setUserData] = useState(() => {
+  const [userData] = useState(() => {
     const user = usersData.find(user => user.id === userId);
     return user || {};
   });
