@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "user": "Elon Reeve Musk",
+    "tweets": 777,
+    "followers": 100500,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
+  },
+  {
+    "id": 2,
+    "user": "Elon Reeve Musk",
+    "tweets": 777,
+    "followers": 100500,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
+  }
+]

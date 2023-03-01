@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Text,
@@ -8,14 +8,48 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaMoon, FaSun } from 'react-icons/fa';
+import usersData from '../../data/users.json';
 
-const TweetCard = () => {
+const TweetCard = ({ userId = 1 }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const [isLiked, setIsLiked] = useState(false);
-  const likeText = isLiked ? 'Liked' : 'Like';
-  const toggleLike = () => {
-    setIsLiked(prevState => !prevState);
+  const [userData, setUserData] = useState(() => {
+    const user = usersData.find(user => user.id === userId);
+    return user || {};
+  });
+  const [followers, setFollowers] = useState(() => {
+    const storedData = localStorage.getItem('usersData');
+    const addStoredData = JSON.parse(storedData) || [];
+    const user = addStoredData.find(user => user.id === userId);
+    return user ? user.followers : userData.followers || 0;
+  });
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('usersData')) || [];
+    const user = storedData.find(user => user.id === userId);
+    if (user) {
+      setFollowers(user.followers);
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      'usersData',
+      JSON.stringify(
+        usersData.map(user => {
+          if (user.id === userId) {
+            return { ...user, followers };
+          }
+          return user;
+        })
+      )
+    );
+  }, [followers, userId]);
+
+  const handleFollowClick = () => {
+    const newFollowers =
+      followers === userData.followers ? followers + 1 : followers - 1;
+    setFollowers(newFollowers);
   };
 
   const cardBgColor = useColorModeValue('#471CA9', 'gray.700');
@@ -41,16 +75,10 @@ const TweetCard = () => {
               alt="User Avatar"
             />
           </Box>
-          <Box>
-            <Text fontWeight="bold">John Doe</Text>
-            <Text fontSize="sm" color="gray.500">
-              @johndoe · 1h
-            </Text>
-          </Box>
         </Box>
 
         <Box mt="2" color="#EBD8FF">
-          <Text>777 tweets</Text>
+          <Text>{followers}</Text>
         </Box>
 
         <Box d="flex" mt="2" alignItems="center">
@@ -58,19 +86,19 @@ const TweetCard = () => {
             variant="ghost"
             colorScheme="blue"
             aria-label="Like Tweet"
-            icon={isLiked ? <FaHeart /> : <FaRegHeart />}
-            onClick={toggleLike}
+            icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
+            onClick={toggleColorMode}
           />
           <Text fontSize="sm" color="gray.500" ml="2">
-            {likeText}
+            {userData ? userData.tweets : '-'}
           </Text>
           <Button
             ml="auto"
             colorScheme="blue"
-            onClick={toggleColorMode}
+            onClick={handleFollowClick}
             variant="outline"
           >
-            Toggle {colorMode === 'light' ? 'Dark' : 'Light'} Mode
+            {followers === userData.followers ? 'Following' : 'Follow'}
           </Button>
         </Box>
       </Box>
