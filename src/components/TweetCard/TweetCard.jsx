@@ -67,9 +67,9 @@ const TweetCard = ({ userId = 1 }) => {
     pos: 'absolute',
     w: '379px',
     h: '8px',
-    top: '50%',
+    top: '214px',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translate(-50%)',
     bg: '#EBD8FF',
     boxShadow:
       '0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06), inset 0px -1.71846px 3.43693px #AE7BE3, inset 0px 3.43693px 2.5777px #FBF8FF',
@@ -79,21 +79,34 @@ const TweetCard = ({ userId = 1 }) => {
     pos: 'absolute',
     w: '80px',
     h: '80px',
-    top: '50%',
+    top: '178px',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
-    bg: '#471CA9',
-    border: '8px solid #EBD8FF',
+    transform: 'translate(-50%)',
+    bg: '#FBF8FF',
+
     padding: '8px',
+    border: 'none',
     boxShadow:
-      '0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06), inset 0px -1.71846px 3.43693px #AE7BE3, inset 0px 3.43693px 2.5777px #FBF8FF',
+      '0px 4.39163px 4.39163px rgba(0, 0, 0, 0.06), inset 0px -2.19582px 4.39163px #AE7BE3, inset 0px 4.39163px 3.29372px #FBF8FF;',
+
     borderRadius: '50%',
+    overflow: 'hidden',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    '& > img': {
+      borderRadius: 'inherit',
+      height: '100%',
+      width: '100%',
+      objectFit: 'cover',
+    },
   };
 
   return (
     <Box
       w="380px"
-      h="435px"
+      h="460px"
       borderWidth="1px"
       borderRadius="lg"
       borderColor={cardBorderColor}
@@ -118,14 +131,21 @@ const TweetCard = ({ userId = 1 }) => {
 
         <Box sx={stripe}></Box>
         <Box sx={avatarStyles}>
-          <Image src={userData.avatar} alt="User Avatar" />
+          <Box bg="#471CA9" overflow="hidden" borderRadius="50%">
+            <Image
+              maxW="100%"
+              maxH="100%"
+              src={userData.avatar}
+              alt="User Avatar"
+            />
+          </Box>
         </Box>
       </Box>
 
       <Box
         textAlign="center"
         pos="absolute"
-        bottom="0"
+        bottom="36px"
         left="50%"
         transform="translateX(-50%)"
       >
@@ -140,7 +160,9 @@ const TweetCard = ({ userId = 1 }) => {
           <Text paddingBottom="16px" color="#EBD8FF">
             {userData ? followers : '-'}
           </Text>
-          <Text color="#EBD8FF">{userData ? userData.tweets : '-'}</Text>
+          <Text paddingBottom="26px" color="#EBD8FF">
+            {userData ? userData.tweets : '-'}
+          </Text>
           <Button
             sx={basicTweetCardStyles}
             w="196px"
