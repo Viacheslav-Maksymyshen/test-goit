@@ -142,7 +142,7 @@ const TweetCard = ({ userId }) => {
               maxW="100%"
               maxH="100%"
               src={userData.avatar}
-              alt="User Avatar"
+              alt={userData.user}
             />
           </Box>
         </Box>
