@@ -13,37 +13,32 @@ import {
 import { FaMoon, FaSun } from 'react-icons/fa';
 import usersData from '../../data/users.json';
 
-const TweetCard = ({ userId = 1 }) => {
+const TweetCard = ({ userId }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [userData] = useState(() => {
     const user = usersData.find(user => user.id === userId);
     return user || {};
   });
   const [followers, setFollowers] = useState(() => {
-    const storedData = JSON.parse(localStorage.getItem('usersData')) || [];
-    const user = storedData.find(user => user.id === userId);
-    return user ? user.followers : userData.followers || 0;
+    const storedData = JSON.parse(localStorage.getItem('usersData')) || {};
+    return storedData[userId]?.followers ?? userData.followers ?? 0;
   });
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem('usersData')) || [];
-    const user = storedData.find(user => user.id === userId);
-    if (user) {
-      setFollowers(user.followers);
+    const storedData = JSON.parse(localStorage.getItem('usersData')) || {};
+    const storedFollowers = storedData[userId]?.followers;
+    if (storedFollowers !== undefined) {
+      setFollowers(storedFollowers);
     }
   }, [userId]);
 
   useEffect(() => {
     localStorage.setItem(
       'usersData',
-      JSON.stringify(
-        usersData.map(user => {
-          if (user.id === userId) {
-            return { ...user, followers };
-          }
-          return user;
-        })
-      )
+      JSON.stringify({
+        ...JSON.parse(localStorage.getItem('usersData') || '{}'),
+        [userId]: { followers },
+      })
     );
   }, [followers, userId]);
 
@@ -52,7 +47,6 @@ const TweetCard = ({ userId = 1 }) => {
       followers === userData.followers ? followers + 1 : followers - 1;
     setFollowers(newFollowers);
   };
-
   const cardBgColor = useColorModeValue('#471CA9', 'gray.700');
   const cardBorderColor = useColorModeValue('gray.200', 'gray.600');
 

@@ -1,23 +1,14 @@
-import TweetCard from './TweetCard';
-import { ChakraProvider } from '@chakra-ui/react';
-import { extendTheme } from '@chakra-ui/react';
+import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
 
-const theme = extendTheme({
-  fonts: {
-    body: 'Montserrat, sans-serif',
-  },
-  colors: {
-    cardButton: {
-      follow: '#EBD8FF',
-      following: '#5CD3A8',
-    },
-  },
-});
+const Tweet = lazy(() => import('pages/Tweet/Tweet'));
 
 export const App = () => {
   return (
-    <ChakraProvider theme={theme}>
-      <TweetCard />
-    </ChakraProvider>
+    <>
+      <Routes>
+        <Route index element={<Tweet />} />
+      </Routes>
+    </>
   );
 };

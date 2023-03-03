@@ -4,13 +4,71 @@
     "user": "Elon Reeve Musk",
     "tweets": 777,
     "followers": 100500,
-    "avatar": "https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
+    "avatar": "https://cdn-icons-png.flaticon.com/512/9161/9161216.png"
   },
   {
     "id": 2,
-    "user": "Elon Reeve Musk",
-    "tweets": 777,
-    "followers": 100500,
-    "avatar": "https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
+    "user": "Tim Cook",
+    "tweets": 200,
+    "followers": 50000,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/9161/9161332.png"
+  },
+  {
+    "id": 3,
+    "user": "Bill Gates",
+    "tweets": 150,
+    "followers": 45000,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/9136/9136646.png"
+  },
+  {
+    "id": 4,
+    "user": "Jeff Bezos",
+    "tweets": 400,
+    "followers": 80000,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/9220/9220485.png"
+  },
+  {
+    "id": 5,
+    "user": "Mark Zuckerberg",
+    "tweets": 250,
+    "followers": 75000,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/7678/7678421.png"
+  },
+  {
+    "id": 6,
+    "user": "Steve Jobs",
+    "tweets": 350,
+    "followers": 70000,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/6850/6850413.png"
+  },
+
+  {
+    "id": 7,
+    "user": "Jack Dorsey",
+    "tweets": 678,
+    "followers": 75000,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/4881/4881502.png"
+  },
+  {
+    "id": 8,
+    "user": "Larry Page",
+    "tweets": 345,
+    "followers": 50000,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/8478/8478284.png"
+  },
+  {
+    "id": 9,
+    "user": "Bill Gates",
+    "tweets": 123,
+    "followers": 40000,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/3411/3411741.png"
+  },
+
+  {
+    "id": 10,
+    "user": "Larry Page",
+    "tweets": 432,
+    "followers": 50000,
+    "avatar": "https://cdn-icons-png.flaticon.com/512/6546/6546298.png"
   }
 ]
