@@ -1,23 +1,21 @@
 import { useState, useEffect } from 'react';
 import logo from '../../media/Logo.svg';
 import bg from '../../media/Bg.svg';
+import numeral from 'numeral';
 import {
   Box,
   Text,
   Image,
   Button,
-  IconButton,
-  useColorMode,
   useColorModeValue,
   Card,
   CardBody,
   CardFooter,
 } from '@chakra-ui/react';
-import { FaMoon, FaSun } from 'react-icons/fa';
+
 import usersData from '../../data/users.json';
 
 const TweetCard = ({ userId }) => {
-  const { colorMode, toggleColorMode } = useColorMode();
   const [userData] = useState(() => {
     const user = usersData.find(user => user.id === userId);
     return user || {};
@@ -50,8 +48,18 @@ const TweetCard = ({ userId }) => {
       followers === userData.followers ? followers + 1 : followers - 1;
     setFollowers(newFollowers);
   };
-  const cardBgColor = useColorModeValue('#471CA9', 'gray.700');
-  const cardBorderColor = useColorModeValue('gray.200', 'gray.600');
+
+  function NumberDisplay({ followers }) {
+    const formattedNumber = numeral(followers).format('0,0');
+    return <>{formattedNumber}</>;
+  }
+
+  const cardBgColor = useColorModeValue(
+    'linear-gradient(114.99deg, #471CA9 -0.99%, #5736A3 54.28%, #4B2A99 78.99%)',
+    'gray.700'
+  );
+  const cardBorderColor = useColorModeValue('none', 'gray.600');
+  const cardTextColor = useColorModeValue('#373737', '#000');
 
   const basicTweetCardStyles = {
     fontWeight: '500',
@@ -105,12 +113,12 @@ const TweetCard = ({ userId }) => {
       as={'li'}
       w="380px"
       h="460px"
-      borderWidth="1px"
-      borderRadius="lg"
+      borderRadius="20px"
       borderColor={cardBorderColor}
       bg={cardBgColor}
       overflow="hidden"
       pos="relative"
+      boxShadow="-2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23)"
     >
       <CardBody>
         <Box pos="absolute" w="76px" h="22px" top="20px" left="20px">
@@ -129,7 +137,7 @@ const TweetCard = ({ userId }) => {
 
         <Box sx={stripe}></Box>
         <Box sx={avatarStyles}>
-          <Box bg="#471CA9" overflow="hidden" borderRadius="50%">
+          <Box bg={cardBgColor} overflow="hidden" borderRadius="50%">
             <Image
               maxW="100%"
               maxH="100%"
@@ -147,16 +155,9 @@ const TweetCard = ({ userId }) => {
         left="50%"
         transform="translateX(-50%)"
       >
-        {/* <IconButton
-            variant="ghost"
-            colorScheme="blue"
-            aria-label="Like Tweet"
-            icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
-            onClick={toggleColorMode}
-          /> */}
         <Box sx={basicTweetCardStyles}>
           <Text paddingBottom="16px" color="#EBD8FF">
-            {userData ? followers : '-'}
+            {userData ? <NumberDisplay followers={followers} /> : '-'}
           </Text>
           <Text paddingBottom="26px" color="#EBD8FF">
             {userData ? userData.tweets : '-'}
@@ -168,6 +169,7 @@ const TweetCard = ({ userId }) => {
             ml="auto"
             onClick={handleFollowClick}
             variant="solid"
+            color={cardTextColor}
             backgroundColor={
               followers === userData.followers
                 ? 'cardButton.follow'

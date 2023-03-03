@@ -17,8 +17,6 @@ const TweetCardList = () => {
         gap={'32px'}
         width={'full'}
         listStyleType={'none'}
-        // marginLeft="auto"
-        // marginRight="auto"
         justifyContent={'center'}
       >
         {usersData.map(user => (
