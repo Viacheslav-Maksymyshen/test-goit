@@ -9,6 +9,9 @@ import {
   IconButton,
   useColorMode,
   useColorModeValue,
+  Card,
+  CardBody,
+  CardFooter,
 } from '@chakra-ui/react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import usersData from '../../data/users.json';
@@ -98,7 +101,8 @@ const TweetCard = ({ userId }) => {
   };
 
   return (
-    <Box
+    <Card
+      as={'li'}
       w="380px"
       h="460px"
       borderWidth="1px"
@@ -108,7 +112,7 @@ const TweetCard = ({ userId }) => {
       overflow="hidden"
       pos="relative"
     >
-      <Box>
+      <CardBody>
         <Box pos="absolute" w="76px" h="22px" top="20px" left="20px">
           <Image borderRadius="full" src={logo} alt="logo" />
         </Box>
@@ -134,9 +138,9 @@ const TweetCard = ({ userId }) => {
             />
           </Box>
         </Box>
-      </Box>
+      </CardBody>
 
-      <Box
+      <CardFooter
         textAlign="center"
         pos="absolute"
         bottom="36px"
@@ -176,8 +180,8 @@ const TweetCard = ({ userId }) => {
             {followers === userData.followers ? 'Follow ' : 'Following'}
           </Button>
         </Box>
-      </Box>
-    </Box>
+      </CardFooter>
+    </Card>
   );
 };
 

@@ -1,6 +1,5 @@
 import usersData from '../../data/users.json';
 import { SimpleGrid } from '@chakra-ui/react';
-
 import TweetCard from '../TweetCard';
 
 const TweetCardList = () => {
@@ -13,11 +12,14 @@ const TweetCardList = () => {
         gridTemplateColumns={{
           base: '1fr',
           md: '1fr 1fr',
-          xl: '1fr 1fr 1fr 1fr',
+          xl: '1fr 1fr 1fr',
         }}
         gap={'32px'}
         width={'full'}
         listStyleType={'none'}
+        // marginLeft="auto"
+        // marginRight="auto"
+        justifyContent={'center'}
       >
         {usersData.map(user => (
           <TweetCard key={user.id} userId={user.id} />
