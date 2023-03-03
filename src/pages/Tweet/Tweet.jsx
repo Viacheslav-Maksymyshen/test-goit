@@ -10,14 +10,7 @@ const Tweet = () => {
   };
 
   return (
-    <Box
-      p="32px"
-      h={{
-        base: 'calc(100vh - 74px)',
-        md: 'calc(100vh - 96px)',
-        xl: 'calc(100vh - 88px)',
-      }}
-    >
+    <Box p="32px">
       <IconButton
         aria-label="Toggle color mode"
         icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
