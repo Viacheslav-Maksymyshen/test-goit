@@ -151,7 +151,7 @@ const TweetCard = ({ userId }) => {
       <CardFooter
         textAlign="center"
         pos="absolute"
-        bottom="36px"
+        bottom="16px"
         left="50%"
         transform="translateX(-50%)"
       >
