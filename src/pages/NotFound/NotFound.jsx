@@ -8,14 +8,14 @@ const NotFound = () => {
       direction="column"
       align="center"
       justify="center"
-      minHeight="100vh"
       padding="2rem"
       bg="gray.50"
+      height="100vh"
     >
       <img
         src={ErrorImage}
-        alt="Kitty Yarn Play 404"
-        style={{ maxWidth: '25%', height: 'auto' }}
+        alt="404"
+        style={{ maxWidth: '30%', height: 'auto' }}
       />
       <Heading mt="8" fontSize="3xl" fontWeight="bold" color="purple.600">
         Oops! Page not found.
